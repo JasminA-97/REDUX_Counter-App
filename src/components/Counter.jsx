@@ -1,11 +1,19 @@
 
-import React from 'react'
+import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { decrement, increment, reset } from '../redux/counterSlice'
+import { decrement, increment, incrementByAmount, reset } from '../redux/counterSlice'
 
 const Counter = () => {
     const dispatch = useDispatch ()
     const {count} = useSelector(state => state.counterReducer)
+    const [amount,setAmount] = useState(0)
+    const handleIncByAmt = () =>{
+        if(amount){
+            dispatch(incrementByAmount(Number(amount)))
+        }else{
+            alert('Enter a value')
+        }
+    }
   return (
     <div>
        <h1 className='text-center'>Counter App</h1> 
@@ -17,8 +25,8 @@ const Counter = () => {
             <button onClick={()=>dispatch(increment())}  className='btn btn-success'>INCREMENT</button>
         </div>
         <div className="d-flex justify-content-between align-items-center mt-5 w-100">
-            <input type="text" className="form-control" placeholder='Incremented Counter Amount' />
-            <button className="btn btn-primary ms-4">INCREMENT BY AMOUNT</button>
+            <input onChange={e=>setAmount(e.target.value)}  type="text" className="form-control" placeholder='Incremented Counter Amount' />
+            <button onClick={handleIncByAmt} className="btn btn-primary ms-4">INCREMENT BY AMOUNT</button>
         </div>
        </div>
     </div>
