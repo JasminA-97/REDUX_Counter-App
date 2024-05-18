@@ -1,4 +1,4 @@
-Counter-App using REDUX
+# Counter-App using REDUX
 ------------------------
 
 -REDUX : A JavaScript library for predictable and maintanable global state management 
